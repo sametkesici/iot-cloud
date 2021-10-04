@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1.text-center Connected Devices
+  h3.text-center#devices-count= devices.length
+  .map#map
+  - let index = 0;
+  - if(records.length > 0)
+      table.table
+        thead
+          tr
+            th(scope='col') #
+            th(scope='col') Fire Alert
+            th(scope='col') Temperature
+            th(scope='col') Humidity
+            th(scope='col') Pressure
+            th(scope='col') Latitude
+            th(scope='col') Longitude
+            th(scope='col') Time
+        tbody#records
+          - for(const record of records)
+            - let className = record.fireAlert ? "bg-warning" : "" 
+            tr(class = className)
+              th(scope='row')= index++
+              th(scope='col')= record.fireAlert ? "Fire Alert" : "No Fire" 
+              th(scope='col')= record.temperature + " °C"
+              th(scope='col')= record.humidity + "% RH"
+              th(scope='col')= record.pressure + " Pa"
+              th(scope='col')= record.latitude
+              th(scope='col')= record.longitude
+              th(scope='col')= record.date ? record.date : ''
+
+  
